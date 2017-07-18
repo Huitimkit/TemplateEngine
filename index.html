@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <title></title>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <script src="./tplengine.js"></script>
+    </head>
+    <body>
+        <div id="cnt1"></div>
+        <div id="cnt2"></div>
+
+
+        <script>
+        var tpl1 = '<p>Hello, my name is <%this.name%>. I\'m <%this.profile.age%> years old.</p>';
+        var tpl2 = 'My skills:' + 
+                    '<%if(this.showSkills) {%>' +
+                        '<%for(var index in this.skills) {%>' + 
+                        '<a href="#"><%this.skills[index]%></a> ' +
+                        '<%}%>' +
+                    '<%} else {%>' +
+                        '<p>none</p>' +
+                    '<%}%>';
+        var data1 = {
+            name: 'hui',
+            profile: {
+                age: 29
+            }
+        };
+        
+        var data2 = {
+            skills: ["js", "html", "css"],
+            showSkills: true
+        };
+        document.getElementById('cnt1').innerHTML = TemplateEngine(tpl1, data1);
+        document.getElementById('cnt2').innerHTML = TemplateEngine(tpl2, data2);
+        </script>
+    </body>
+</html>
